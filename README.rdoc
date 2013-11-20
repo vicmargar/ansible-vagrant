@@ -1,0 +1,5 @@
+See:
+
+* https://github.com/jlund/mazer-rackham
+* http://ansibleworks.com/docs/
+* http://docs.vagrantup.com/v2/provisioning/ansible.html
