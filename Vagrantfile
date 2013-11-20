@@ -37,7 +37,7 @@ Vagrant::Config.run do |config|
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
 
   config.vm.provision :ansible do |ansible|
-    ansible.playbook = "mazer-rackham/imgur-display-setup.yml"
+    ansible.playbook = "provisioner/playbook.yml"
     ansible.inventory_path = "mazer-rackham/hosts"
   end
 
