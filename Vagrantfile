@@ -38,7 +38,7 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "provisioner/playbook.yml"
-    ansible.inventory_path = "mazer-rackham/hosts"
+    ansible.inventory_path = "provisioner/hosts"
   end
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
