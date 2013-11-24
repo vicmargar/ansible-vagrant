@@ -1,0 +1,22 @@
+---
+- name: Remove Postgres 9.1
+  apt: pkg=postgresql-9.1 purge=yes state=absent
+
+# http://wiki.postgresql.org/wiki/Apt
+
+- name: Postgresql 9.3 repository
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' state=present
+
+- name: Postgresql 9.3 key
+  apt_key: url=http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc  state=present
+
+- name: Postgres 9.3
+  apt: pkg=postgresql-9.3 update_cache=yes install_recommends=yes
+
+- name: Necessary python packages for postgresql
+  action: apt pkg={{item}}
+  with_items:
+    - python-psycopg2
+
+- include: databases.yml
+  sudo_user: postgres

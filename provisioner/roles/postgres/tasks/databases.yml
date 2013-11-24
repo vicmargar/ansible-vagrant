@@ -1,0 +1,9 @@
+---
+- name: create watchsumo_production database
+  postgresql_db: name=watchsumo_production
+
+- name: ensure user has access to database
+  postgresql_user: db=watchsumo_production name=watchsumo
+
+- name: ensure user does not have unnecessary privilege
+  postgresql_user: name=watchsumo role_attr_flags=NOSUPERUSER,NOCREATEDB
