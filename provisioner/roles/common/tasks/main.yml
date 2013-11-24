@@ -20,3 +20,6 @@
 
 - name: Install python-software-properties so the apt_repository module will work properly
   apt: pkg=python-software-properties
+
+- name: Install htop
+  apt: pkg=htop
