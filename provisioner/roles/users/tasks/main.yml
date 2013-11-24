@@ -17,25 +17,18 @@
 - name: Add the watchsumo user
   user: name=watchsumo system=true group=watchsumo
 
-### Victor
-- name: Add the victor user
-  user: name=victor home=/home/victor shell=/bin/bash groups=watchsumo
+- name: Add users
+  user: name={{item}} home=/home/{{item}} shell=/bin/bash groups=watchsumo
+  with_items:
+    - victor
+    - piotr
 
-- name: Set up authorized_keys for the victor user
-  authorized_key: user=victor
-                  key="{{ item }}"
-  with_file:
-    - public_keys/victor
-
-### Piotr
-- name: Add the piotr user
-  user: name=piotr home=/home/piotr shell=/bin/bash groups=watchsumo
-
-- name: Set up authorized_keys for the piotr user
-  authorized_key: user=piotr
-                  key="{{ item }}"
-  with_file:
-    - public_keys/victor
+- name: Set up authorized_keys for watchsumo users
+  authorized_key: user={{item}}
+                  key="{{ lookup('file', "public_keys/" + item) }}"
+  with_items:
+    - victor
+    - piotr
 
 ### Set watchsumo users as sudoers without password
 - name: ensure sudoers.d is enabled
