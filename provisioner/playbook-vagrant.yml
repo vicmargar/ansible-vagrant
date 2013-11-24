@@ -1,0 +1,13 @@
+---
+- hosts: vagrant
+  user: vagrant
+  sudo: yes
+
+  roles:
+    - common
+    - users
+    - ssh
+    - erlang
+    - rbenv
+    - postgres
+    - elixir
