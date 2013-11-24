@@ -19,7 +19,7 @@
 
 ### Victor
 - name: Add the victor user
-  user: name=victor home=/home/victor shell=/bin/bash groups=watchsumo,admin
+  user: name=victor home=/home/victor shell=/bin/bash groups=watchsumo
 
 - name: Set up authorized_keys for the victor user
   authorized_key: user=victor
@@ -29,10 +29,17 @@
 
 ### Piotr
 - name: Add the piotr user
-  user: name=piotr home=/home/piotr shell=/bin/bash groups=watchsumo,admin
+  user: name=piotr home=/home/piotr shell=/bin/bash groups=watchsumo
 
 - name: Set up authorized_keys for the piotr user
   authorized_key: user=piotr
                   key="{{ item }}"
   with_file:
     - public_keys/victor
+
+### Set watchsumo users as sudoers without password
+- name: ensure sudoers.d is enabled
+  lineinfile: dest=/etc/sudoers state=present backup=yes regexp='^#includedir /etc/sudoers.d' line='#includedir /etc/sudoers.d'
+
+- name: set up password-less sudo for users in watchsumo group
+  copy: content='%watchsumo ALL=(ALL) NOPASSWD:ALL' dest=/etc/sudoers.d/watchsumo owner=root group=root mode=0440
