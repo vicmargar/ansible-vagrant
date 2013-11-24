@@ -1,0 +1,9 @@
+---
+- name: Erlang Solution's repository
+  apt_repository: repo='deb http://packages.erlang-solutions.com/debian precise contrib' state=present
+
+- name: Erlang Solution's key
+  apt_key: url=http://packages.erlang-solutions.com/debian/erlang_solutions.asc state=present
+
+- name: Erlang package
+  apt: pkg=erlang update_cache=yes
