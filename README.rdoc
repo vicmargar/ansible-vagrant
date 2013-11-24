@@ -15,6 +15,19 @@ Run on Vagrant:
     vagrant provision
     vagrant ssh
 
-Run on Staging:
 
-    ansible-playbook provisioner/staging.yml -i provisioner/hosts
+On Digital Ocean, create Virtual Server, then as root:
+
+    adduser ansible
+    adduser ansible sudo
+    mkdir /home/ansible/.ssh
+    cp /root/.ssh/authorized_keys /home/ansible/.ssh/authorized_keys
+    chown ansible /home/ansible/.ssh/authorized_keys
+
+Run on Staging, with remote_user: ansible:
+
+    ansible-playbook -K -vvvv provisioner/staging.yml -i provisioner/hosts
+
+After victor,piotr users have been created, comment out remote_user: ansible and run:
+
+    ansible-playbook -vvvv provisioner/staging.yml -i provisioner/hosts
