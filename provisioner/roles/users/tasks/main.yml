@@ -1,0 +1,38 @@
+---
+# Creates watchsumo group
+- group: name=watchsumo
+
+### Ansible
+- name: Add the ansible user
+  user: name=ansible home=/home/ansible shell=/bin/bash
+
+- name: Set up authorized_keys for the ansible user
+  authorized_key: user=ansible
+                  key="{{ item }}"
+  with_file:
+    - public_keys/victor
+    - public_keys/piotr
+
+### Watchsumo
+- name: Add the watchsumo user
+  user: name=watchsumo system=true group=watchsumo
+
+### Victor
+- name: Add the victor user
+  user: name=victor home=/home/victor shell=/bin/bash groups=watchsumo,admin
+
+- name: Set up authorized_keys for the victor user
+  authorized_key: user=victor
+                  key="{{ item }}"
+  with_file:
+    - public_keys/victor
+
+### Piotr
+- name: Add the piotr user
+  user: name=piotr home=/home/piotr shell=/bin/bash groups=watchsumo,admin
+
+- name: Set up authorized_keys for the piotr user
+  authorized_key: user=piotr
+                  key="{{ item }}"
+  with_file:
+    - public_keys/victor
