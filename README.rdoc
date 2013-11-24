@@ -4,7 +4,17 @@ See:
 * http://ansibleworks.com/docs/
 * http://docs.vagrantup.com/v2/provisioning/ansible.html
 
+Install Ansible:
 
     sudo easy_install pip
     sudo pip install ansible
+
+Run on Vagrant:
+
     vagrant up
+    vagrant provision
+    vagrant ssh
+
+Run on Staging:
+
+    ansible-playbook provisioner/staging.yml -i provisioner/hosts

@@ -1,0 +1,6 @@
+elixir_version: v0.11.2
+elixir_symlinks:
+  - elixir
+  - elixirc
+  - mix
+  - iex

@@ -1,0 +1,15 @@
+---
+- name: elixir | check elixir installed
+  command: elixir --version | grep {{elixir_version}}
+  register: elixir_present
+  ignore_errors: yes
+
+- name: Clone Elixir repo
+  git: repo=https://github.com/elixir-lang/elixir.git
+       dest=/usr/local/src/elixir
+       version={{elixir_version}}
+  when: elixir_present|failed
+
+- name: Install Elixir
+  command: chdir=/usr/local/src/elixir make install
+  when: elixir_present|failed
