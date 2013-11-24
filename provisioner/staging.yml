@@ -1,0 +1,13 @@
+---
+- hosts: dotest1
+  remote_user: ansible
+  sudo: yes
+
+  roles:
+    - common
+    - users
+    - ssh
+    - erlang
+    - rbenv
+    - postgres
+    - elixir
