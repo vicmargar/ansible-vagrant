@@ -18,7 +18,7 @@
   user: name=watchsumo system=true group=watchsumo
 
 - name: Add users
-  user: name={{item}} home=/home/{{item}} shell=/bin/bash groups=watchsumo
+  user: name={{item}} shell=/bin/bash groups=watchsumo
   with_items:
     - victor
     - piotr
