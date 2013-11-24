@@ -1,0 +1,9 @@
+---
+- name: Nginx repository
+  apt_repository: repo='deb http://nginx.org/packages/ubuntu/ precise nginx' state=present
+
+- name: Nginx key
+  apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
+
+- name: Nginx package
+  apt: pkg=nginx update_cache=yes
