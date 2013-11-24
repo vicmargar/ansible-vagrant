@@ -11,3 +11,5 @@
     - rbenv
     - postgres
     - elixir
+    - nginx
+    - watchsumo-gui
