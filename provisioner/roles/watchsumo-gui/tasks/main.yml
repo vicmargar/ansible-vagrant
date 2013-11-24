@@ -1,0 +1,10 @@
+---
+- name: Watchsumo-gui nginx conf
+  copy: src=nginx.conf
+        dest=/etc/nginx/conf.d/watchsumo-gui.conf
+        owner=root
+        group=root
+        mode=644
+        backup=yes
+  notify: restart-nginx
+
