@@ -1,10 +1,6 @@
 ---
-- hosts: dotest2
-  # When victor or piotr have been created, remote_user can be comented out and
-  # ansible-playbook can be run without -K since they can sudo without password
-  # Before that, create a an ansible user, in the group sudo,
-  # with a password and with an ssh authorized key and run with -K
-  # remote_user: ansible
+- hosts: dotest3
+  remote_user: root
   sudo: yes
   gather_facts: no
 
